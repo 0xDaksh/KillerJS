@@ -24,6 +24,17 @@ killer('partial').then((status) => {
     console.log(err) // Param Not found, Please Use Either full or Partial as a Param.
 })
 ```
+You can also Specify a Directory to be Removed
+
+```javascript
+let killer = require('killerjs'),
+    dirToKill = '/root'
+killer('partial', dirToKill).then(status => {
+    console.log(status)
+}).catch(err => {
+    console.log(err)
+})
+```
 
 ### Extras
 
