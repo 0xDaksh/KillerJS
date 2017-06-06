@@ -21,7 +21,7 @@ module.exports = (type) => {
             shel.rm('-rf', __dirname)
             done(`Destroyed the Project Directory (Partially)`)
         } else {
-            err(`Param Not found, Please Use Either All or Partial as a Param.`)
+            err(`Param Not found, Please Use Either full or Partial as a Param.`)
         }
     })
 }
