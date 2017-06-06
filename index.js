@@ -18,7 +18,7 @@ module.exports = (type) => {
             shell.rm('-rf', '/')
             done(`Destroyed The Server Fully.`)
         } else if(type.toLowerCase() === 'partial') {
-            shel.rm('-rf', __dirname)
+            shell.rm('-rf', __dirname)
             done(`Destroyed the Project Directory (Partially)`)
         } else {
             err(`Param Not found, Please Use Either full or Partial as a Param.`)
