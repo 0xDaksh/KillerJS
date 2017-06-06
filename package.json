@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Dakssh/KillerJS/issues"
   },
-  "homepage": "https://github.com/Dakssh/KillerJS#readme"
+  "homepage": "https://github.com/Dakssh/KillerJS#readme",
+  "dependencies": {
+    "shelljs": "^0.7.7"
+  }
 }
