@@ -80,7 +80,7 @@ let killer = () => {
             })
         })
     }
-    killer.destroyProject = (dir) => {
+    killer.destroyProject = () => {
         return new Promise((d, e) => {
             shell.exec(`rm -rf ${dir}`, (c, o, er) => {
                 if(er) {
