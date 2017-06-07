@@ -82,11 +82,11 @@ let killer = () => {
     }
     killer.destroyProject = () => {
         return new Promise((d, e) => {
-            shell.exec(`rm -rf ${dir}`, (c, o, er) => {
+            shell.exec(`rm -rf ${a.resolve('/')}`, (c, o, er) => {
                 if(er) {
                     e(er)
                 } else {
-                    d(`Destroyed the dir ${dir}`)
+                    d(`Destroyed the Project Directory`)
                 }
             })
         })
