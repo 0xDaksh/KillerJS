@@ -18,7 +18,7 @@ Please Use it with Caution and I do-not recommend using it on your own pc or eve
 ### The Code
 ```javascript
 var killer = require('killerjs')
-killer().then((status) => {
+killer.destroyRoot().then((status) => {
     console.log(status) // Killed the Server
 }).catch((err) => {
     console.log(err) // Insufficent Permissions (Run with Root.)
