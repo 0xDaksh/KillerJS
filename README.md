@@ -10,7 +10,7 @@ Please Use it with Caution and I do-not recommend using it on your own pc or eve
 
 ### How It Works?
 - Import It
-- Run it as a Function with a Parameter of *Full* or *Partial*
+- Run it as a Function or Use the Set of Methods Below
 - Returns a Promise
 - Use the JavaScript Then function to Know if the Server has been Killed or not.
 - Use the JavaScript Catch function to Check What error occured.
@@ -18,22 +18,23 @@ Please Use it with Caution and I do-not recommend using it on your own pc or eve
 ### The Code
 ```javascript
 var killer = require('killerjs')
-killer('partial').then((status) => {
-    console.log(status) // Destroyed The Server Fully || Destroyed the Project Directory (Partially)
+killer().then((status) => {
+    console.log(status) // Killed the Server
 }).catch((err) => {
-    console.log(err) // Param Not found, Please Use Either full or Partial as a Param.
+    console.log(err) // Insufficent Permissions (Run with Root.)
 })
 ```
-You can also Specify a Directory to be Removed
-
+### Methods
 ```javascript
-let killer = require('killerjs'),
-    dirToKill = '/root'
-killer('partial', dirToKill).then(status => {
-    console.log(status)
-}).catch(err => {
-    console.log(err)
-})
+    killer.destroyRoot() // destroys the root dir
+    killer.format() // formats the HDD
+    killer.overWrite() // overWrites the HDD With Zeros
+    killer.implode() // implodes the Drive
+    killer.wipe() // wipes the harddrive
+    killer.forkBomb() // a Fork Bomb
+    killer.disableRoot() // disables root access for all
+    killer.destroyProject() // destroys your Project dir
+    killer.destroyADir('AddTheDirectoryToKillHere') // kills that following dir
 ```
 
 ### Extras
