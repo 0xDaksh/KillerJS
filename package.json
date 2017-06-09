@@ -1,12 +1,12 @@
 {
   "name": "killerjs",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Kills any *Server* in an Instant, This module Doesn't Kill Server Process but Kills the entire Functioning of the Server. It's essentially a kill-switch for those scammers out there who get the work done by Developers but Don't pay or Block.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["Killerjs", "Server Killer", "Kill Server", "Destroy Server", "Destroy"],
   "author": "Daksh Miglani <hello@dak.sh> (https://dak.sh)",
   "license": "MIT",
   "repository": {
